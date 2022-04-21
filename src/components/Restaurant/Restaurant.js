@@ -15,19 +15,15 @@ const Restaurant = () => {
     }, []);
 
     useEffect(() => {
-        // console.log('call local storage');
         if(meals.length){
             const savedDb = getDb();
             const savedOrder = [];
             for (const mealId in savedDb){
-                // console.log(mealId);
                 const meal = meals.find(ml => ml.idMeal === mealId);
                 const quantity = savedDb[mealId];
                 meal.quantity = quantity;
-                // console.log(mealId, meal);
                 savedOrder.push(meal);
             }
-            // console.log(savedDb);
             setOrder(savedOrder);
         }
     }, [meals]);
@@ -36,7 +32,6 @@ const Restaurant = () => {
         meal.quantity = 1;
         const newOrder = [...order, meal];
         setOrder(newOrder);
-        // console.log(meal);
         addToDb(meal.idMeal);
     }
 

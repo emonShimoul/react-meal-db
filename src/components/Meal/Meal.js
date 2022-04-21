@@ -2,7 +2,7 @@ import React from 'react';
 import './Meal.css';
 
 const Meal = (props) => {
-    const {strMeal, strInstruction, strMealThumb} = props.meal;
+    const {strMeal, strMealThumb} = props.meal;
     const {handleAddToOrder, meal} = props;
     return (
         <div className='meal'>

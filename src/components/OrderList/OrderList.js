@@ -12,8 +12,7 @@ const OrderList = (props) => {
     // for(const meal of order){
     //     count += meal.quantity;
     // }
-
-    console.log(order);
+    
     return (
         <div>
             <h2>Order List</h2>
