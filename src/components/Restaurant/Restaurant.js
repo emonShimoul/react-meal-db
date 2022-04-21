@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb, getDb } from '../../localstorage/localstorage';
 import Meal from '../Meal/Meal';
 import OrderList from '../OrderList/OrderList';
 import './Restaurant.css';
@@ -13,9 +14,29 @@ const Restaurant = () => {
         .then(data => setMeals(data.meals));
     }, []);
 
+    useEffect(() => {
+        console.log('call local storage');
+        if(meals.length){
+            const savedDb = getDb();
+            const savedOrder = [];
+            for (const mealId in savedDb){
+                // console.log(mealId);
+                const meal = meals.find(ml => ml.idMeal === mealId);
+                const quantity = savedDb[mealId];
+                meal.quantity = quantity;
+                // console.log(mealId, meal);
+                savedOrder.push(meal);
+            }
+            // console.log(savedDb);
+            setOrder(savedOrder);
+        }
+    }, [meals]);
+
     const handleAddToOrder = meal => {
         const newOrder = [...order, meal];
         setOrder(newOrder);
+        // console.log(meal);
+        addToDb(meal.idMeal);
     }
 
     return (
