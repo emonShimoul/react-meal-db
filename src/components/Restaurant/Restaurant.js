@@ -15,7 +15,7 @@ const Restaurant = () => {
     }, []);
 
     useEffect(() => {
-        console.log('call local storage');
+        // console.log('call local storage');
         if(meals.length){
             const savedDb = getDb();
             const savedOrder = [];
@@ -33,6 +33,7 @@ const Restaurant = () => {
     }, [meals]);
 
     const handleAddToOrder = meal => {
+        meal.quantity = 1;
         const newOrder = [...order, meal];
         setOrder(newOrder);
         // console.log(meal);
