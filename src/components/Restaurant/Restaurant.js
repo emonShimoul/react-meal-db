@@ -13,6 +13,11 @@ const Restaurant = () => {
         .then(data => setMeals(data.meals));
     }, []);
 
+    const handleAddToOrder = meal => {
+        const newOrder = [...order, meal];
+        setOrder(newOrder);
+    }
+
     return (
         <div className='restaurant-menu'>
             <div className='meals-container'>
@@ -20,6 +25,7 @@ const Restaurant = () => {
                     meals.map(meal => <Meal
                         key={meal.idMeal}
                         meal={meal}
+                        handleAddToOrder={handleAddToOrder}
                     ></Meal>)
                 }
             </div>
